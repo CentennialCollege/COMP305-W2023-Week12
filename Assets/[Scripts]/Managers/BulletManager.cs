@@ -29,7 +29,7 @@ public class BulletManager : MonoBehaviour
     /// </summary>
     private void BuildBulletPool()
     {
-        for (int i = 0; i < poolSize; i++)
+        for (var i = 0; i < poolSize; i++)
         {
             bulletPool.Enqueue(CreateBullet());
         }

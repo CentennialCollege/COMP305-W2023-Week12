@@ -15,12 +15,10 @@ public class BulletController : MonoBehaviour
 
     public BulletManager bulletManager;
 
-
-    void Start()
+    void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerBehaviour>().transform;
-        direction = Vector3.Normalize((player.position + ((offset.y <= player.position.y) ? offset : new Vector3(0.0f, 1.0f, 0.0f))) - transform.position);
         bulletManager = FindObjectOfType<BulletManager>();
     }
 
@@ -32,6 +30,7 @@ public class BulletController : MonoBehaviour
 
     public void Activate()
     {
+        direction = Vector3.Normalize((player.position + ((offset.y <= player.position.y) ? offset : new Vector3(0.0f, 1.0f, 0.0f))) - transform.position);
         Move();
         Invoke("DestroyYourself", 2.0f);
     }
