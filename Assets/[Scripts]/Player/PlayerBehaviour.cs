@@ -16,6 +16,12 @@ public class PlayerBehaviour : MonoBehaviour
     public LayerMask groundLayerMask;
     public bool isGrounded;
 
+    [Header("Ramp Detection")]
+    public Transform inFrontCheck;
+    public LayerMask rampLayerMask;
+    public RampDirection rampDirection;
+    public bool isRampInFront;
+
     [Header("Screen Shake Properties")]
     public CinemachineVirtualCamera virtualCamera;
     public CinemachineBasicMultiChannelPerlin perlin;
@@ -43,6 +49,9 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        rampDirection = RampDirection.NONE;
+
+
         animator = GetComponent<Animator>();
         soundManager = FindObjectOfType<SoundManager>();
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -60,6 +69,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
+        
+
         if (health.value <= 0)
         {
             life.LoseLife();
@@ -87,6 +98,13 @@ public class PlayerBehaviour : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundPoint.position, groundRadius, groundLayerMask);
         var x = Input.GetAxisRaw("Horizontal");
 
+
+        //isRampInFront = Physics2D.Linecast(transform.position, inFrontCheck.position, rampLayerMask);
+
+        isRampInFront = Physics2D.Raycast(transform.position, (inFrontCheck.position - transform.position).normalized, (inFrontCheck.position - transform.position).magnitude, rampLayerMask);
+
+
+
         Flip(x);
         Move(x);
         AirCheck();
@@ -108,6 +126,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void Move(float x)
     {
         rigidbody2D.AddForce(Vector2.right * x * horizontalForce * ((isGrounded) ? 1 : airFactor));
+        rigidbody2D.AddForce(Vector2.up * ((isRampInFront) ? verticalForce : 0.0f));
 
         rigidbody2D.velocity = new Vector2(Mathf.Clamp(rigidbody2D.velocity.x, -maxSpeed, maxSpeed), rigidbody2D.velocity.y);
 
@@ -162,14 +181,15 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.white;
+        Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(groundPoint.position, groundRadius);
+        Gizmos.DrawLine(transform.position, inFrontCheck.position);
     }
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Pickup"))
+        if (other.gameObject.CompareTag("Pickup"))
         {
             other.gameObject.SetActive(false);
             soundManager.PlaySoundFX(Channel.PICKUP, SoundFX.GEM);
@@ -190,6 +210,34 @@ public class PlayerBehaviour : MonoBehaviour
             soundManager.PlaySoundFX(Channel.PLAYER_HURT_FX, SoundFX.HURT);
             health.TakeDamage(10);
             rigidbody2D.AddForce(new Vector2(bounceForce * (other.GetComponent<Rigidbody2D>().velocity.x > 0.0 ? 1.0f : -1.0f) * 0.5f, 0.0f), ForceMode2D.Impulse);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            rampDirection = RampDirection.NONE;
+            transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            print("colliding with Ramp");
+
+            if (isRampInFront)
+            {
+                rampDirection = RampDirection.UP;
+                transform.eulerAngles = new Vector3(0.0f, 0.0f, 25.0f * transform.localScale.x);
+            }
+            else
+            {
+                rampDirection = RampDirection.DOWN;
+                transform.eulerAngles = new Vector3(0.0f, 0.0f, 25.0f * transform.localScale.x);
+            }
         }
     }
 
@@ -224,10 +272,16 @@ public class PlayerBehaviour : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D other)
     {
+        
+
+
+
         if (other.gameObject.CompareTag("Enemy"))
         {
             soundManager.StopSoundFX(Channel.GROWL, SoundFX.GROWL);
             isCollidingWithEnemy = false;
         }
     }
+
+
 }

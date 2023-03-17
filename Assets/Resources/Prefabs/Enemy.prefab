@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7368404326395591393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.229, y: -0.954, z: 0}
+  m_LocalPosition: {x: -0.9, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 791409369}
   - component: {fileID: 7368404327475435488}
   - component: {fileID: 791409370}
+  - component: {fileID: 791409371}
   m_Layer: 12
   m_Name: Enemy
   m_TagString: Enemy
@@ -319,6 +320,23 @@ MonoBehaviour:
   playerDirectionVector: {x: 0, y: 0}
   colliderName: {fileID: 0}
   playerTransform: {fileID: 0}
+--- !u!114 &791409371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368404327475435514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6ac3a8bc9cd2447813c43c0917a7e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasLOS: 0
+  fireDelay: 20
+  bulletSpawn: {fileID: 374912065709889940}
+  bulletPrefab: {fileID: 0}
+  bulletParent: {fileID: 0}
 --- !u!1 &7368404327642736813
 GameObject:
   m_ObjectHideFlags: 0

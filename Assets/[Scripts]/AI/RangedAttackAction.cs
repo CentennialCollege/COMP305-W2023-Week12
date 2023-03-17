@@ -8,14 +8,11 @@ public class RangedAttackAction : MonoBehaviour, Action
     [Range(1, 100)] 
     public int fireDelay = 20;
     public Transform bulletSpawn;
+    public BulletManager bulletManager;
 
-    public GameObject bulletPrefab;
-    public Transform bulletParent;
-
-    void Awake()
+    void Start()
     {
-        bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
-        bulletParent = GameObject.Find("[BULLETS]").transform;
+        bulletManager = FindObjectOfType<BulletManager>();
     }
 
     void Update()
@@ -33,6 +30,6 @@ public class RangedAttackAction : MonoBehaviour, Action
 
     public void Execute()
     {
-        var bullet = Instantiate(bulletPrefab, bulletSpawn.position, Quaternion.identity, bulletParent);
+        var bullet = bulletManager.GetBullet(bulletSpawn.position);
     }
 }

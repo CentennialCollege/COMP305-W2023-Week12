@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class BulletController : MonoBehaviour
 {
     public Transform player;
@@ -12,13 +13,15 @@ public class BulletController : MonoBehaviour
     [Range(1.0f, 100.0f)]
     public float force;
 
+    public BulletManager bulletManager;
+
 
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<PlayerBehaviour>().transform;
         direction = Vector3.Normalize((player.position + ((offset.y <= player.position.y) ? offset : new Vector3(0.0f, 1.0f, 0.0f))) - transform.position);
-        Activate();
+        bulletManager = FindObjectOfType<BulletManager>();
     }
 
     // Update is called once per frame
@@ -49,7 +52,7 @@ public class BulletController : MonoBehaviour
     {
         if (gameObject.activeInHierarchy)
         {
-            Destroy(gameObject);
+            bulletManager.ReturnBullet(gameObject);
         }
     }
 
