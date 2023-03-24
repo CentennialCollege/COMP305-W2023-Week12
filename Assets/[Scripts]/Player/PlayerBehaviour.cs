@@ -41,6 +41,10 @@ public class PlayerBehaviour : MonoBehaviour
     [Header("Collision Response")] 
     public float bounceForce;
 
+    [Header("Dust Trail Properties")] 
+    public ParticleSystem dustTrailParticleSystem;
+    public Color dustTrailColor;
+
     private Animator animator;
     private SoundManager soundManager;
     private Rigidbody2D rigidbody2D;
@@ -50,7 +54,6 @@ public class PlayerBehaviour : MonoBehaviour
     void Start()
     {
         rampDirection = RampDirection.NONE;
-
 
         animator = GetComponent<Animator>();
         soundManager = FindObjectOfType<SoundManager>();
@@ -65,6 +68,9 @@ public class PlayerBehaviour : MonoBehaviour
         shakeTimer = shakeDuration;
         virtualCamera = GameObject.Find("Player Camera").GetComponent<CinemachineVirtualCamera>();
         perlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
+        // dust trail
+        dustTrailParticleSystem = GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -136,6 +142,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 animationState = PlayerAnimationState.RUN;
                 animator.SetInteger("AnimationState", (int)animationState);
+                CreateDustTrail();
             }
             else
             {
@@ -152,6 +159,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             rigidbody2D.AddForce(Vector2.up * verticalForce, ForceMode2D.Impulse);
             soundManager.PlaySoundFX(Channel.PLAYER_SOUND_FX, SoundFX.JUMP);
+            CreateDustTrail();
         }
 
     }
@@ -171,6 +179,12 @@ public class PlayerBehaviour : MonoBehaviour
         {
             transform.localScale = new Vector3((x > 0) ? 1 : -1, 1, 1);
         }
+    }
+
+    public void CreateDustTrail()
+    {
+        dustTrailParticleSystem.GetComponent<ParticleSystemRenderer>().material.SetColor("_Color", dustTrailColor);
+        dustTrailParticleSystem.Play();
     }
 
     private void ShakeCamera()
