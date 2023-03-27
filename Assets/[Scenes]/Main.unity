@@ -1343,7 +1343,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 2bcdcc8fa0cc59247809228fb1e466cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1402,15 +1402,15 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834967360}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 0.2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -1648,7 +1648,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -2031,7 +2031,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: -0.3, y: -1, z: 0}
+    m_Position: {x: -0.3, y: -0.95, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 1, y: 0.1, z: 0.1}
     placementMode: 0
@@ -2669,7 +2669,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 1, g: 1, b: 1, a: 1}
+        key0: {r: 0.8705883, g: 0.6039216, b: 0.37647063, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -3436,7 +3436,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 1
+    inWorldSpace: 0
   InheritVelocityModule:
     enabled: 0
     m_Mode: 0
@@ -5296,7 +5296,7 @@ ParticleSystem:
     maxLights: 20
   TrailModule:
     enabled: 0
-    mode: 0
+    mode: 1
     ratio: 1
     lifetime:
       serializedVersion: 2
@@ -21439,6 +21439,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276413085330498970, guid: e6f410b0dff4171469ff283b2d43ff6a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 157856b2f48a74248b8cb9e090b81fbf, type: 2}
     - target: {fileID: 3276413085330498972, guid: e6f410b0dff4171469ff283b2d43ff6a, type: 3}
       propertyPath: m_Name
       value: Player
@@ -21449,15 +21453,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3276413085330498982, guid: e6f410b0dff4171469ff283b2d43ff6a, type: 3}
       propertyPath: dustTrailColor.b
-      value: 0.37647063
+      value: 0.35686275
       objectReference: {fileID: 0}
     - target: {fileID: 3276413085330498982, guid: e6f410b0dff4171469ff283b2d43ff6a, type: 3}
       propertyPath: dustTrailColor.g
-      value: 0.6039216
+      value: 0.8705883
       objectReference: {fileID: 0}
     - target: {fileID: 3276413085330498982, guid: e6f410b0dff4171469ff283b2d43ff6a, type: 3}
       propertyPath: dustTrailColor.r
-      value: 0.8705883
+      value: 0.7058824
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
