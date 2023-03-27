@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class SoundManager : MonoBehaviour
@@ -28,7 +29,17 @@ public class SoundManager : MonoBehaviour
         audioClips.Add(Resources.Load<AudioClip>("Audio/growl-sound"));  // 5
 
         // preload music here
-        audioClips.Add(Resources.Load<AudioClip>("Audio/main-soundtrack"));  // 6
+
+        switch (SceneManager.GetActiveScene().name)
+        {
+            case "Start":
+                audioClips.Add(Resources.Load<AudioClip>("Audio/start-soundtrack"));  // 6
+                break;
+            case "Main":
+                audioClips.Add(Resources.Load<AudioClip>("Audio/main-soundtrack"));  // 6
+                break;
+        }
+        
     }
 
     public void PlaySoundFX(Channel channel, SoundFX sound)
