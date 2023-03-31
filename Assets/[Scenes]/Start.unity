@@ -623,6 +623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 2886306131368643953, guid: f6219d69e1827ab4793ed8d0a7bcb8df, type: 3}
+      propertyPath: startButtonLabel
+      value: 
+      objectReference: {fileID: 1610810346}
     - target: {fileID: 2886306131368643954, guid: f6219d69e1827ab4793ed8d0a7bcb8df, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1573,8 +1577,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: START
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 620aab674d956f340a77dde88af67dd1, type: 2}
-  m_sharedMaterial: {fileID: -46604998882728781, guid: 620aab674d956f340a77dde88af67dd1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: aa4ce155a74c5974ea505d3e3839fdf8, type: 2}
+  m_sharedMaterial: {fileID: -8998663591424102440, guid: aa4ce155a74c5974ea505d3e3839fdf8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1598,7 +1602,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.15
+  m_fontSize: 40.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1709,7 +1713,7 @@ MonoBehaviour:
   m_text: Squirrel Run!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 620aab674d956f340a77dde88af67dd1, type: 2}
-  m_sharedMaterial: {fileID: -46604998882728781, guid: 620aab674d956f340a77dde88af67dd1, type: 2}
+  m_sharedMaterial: {fileID: 5079945491040840471, guid: 620aab674d956f340a77dde88af67dd1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

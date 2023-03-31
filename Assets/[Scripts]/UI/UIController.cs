@@ -33,6 +33,11 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    public void OnRestartButton_Pressed()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
     public void OnStartButton_Down()
     {
         startButtonLabel.rectTransform.localPosition = new Vector3(0.0f, -7.5f);
