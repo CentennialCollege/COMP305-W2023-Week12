@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -90,7 +91,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (life.value <= 0)
         {
-            // TODO: change scene to End Scene
+            SceneManager.LoadScene("End");
         }
 
 
@@ -286,10 +287,6 @@ public class PlayerBehaviour : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D other)
     {
-        
-
-
-
         if (other.gameObject.CompareTag("Enemy"))
         {
             soundManager.StopSoundFX(Channel.GROWL, SoundFX.GROWL);

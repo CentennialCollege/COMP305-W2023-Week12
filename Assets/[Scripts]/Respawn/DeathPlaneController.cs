@@ -12,8 +12,6 @@ public class DeathPlaneController : MonoBehaviour
     {
         soundManager = GameObject.FindObjectOfType<SoundManager>();
     }
-
-
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
