@@ -22,7 +22,7 @@ public class Quest
         this.currentTask = rootTask;
     }
 
-    public virtual void BuildTask()
+    public virtual void BuildQuest()
     {
 
     }
